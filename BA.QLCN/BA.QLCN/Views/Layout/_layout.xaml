@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:QuanLy ="clr-namespace:BA.QLCN.Views.QuanLy"
+            xmlns:CongNhan ="clr-namespace:BA.QLCN.Views.CongNhan"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             mc:Ignorable="d"
+            NavigationPage.HasBackButton="False"
+            BackgroundColor="Transparent"             
+            android:TabbedPage.ToolbarPlacement="Bottom"   
+            x:Name="tabblePage"     
+             x:Class="BA.QLCN.Views.Layout._layout">
+
+    <CongNhan:DSCongNhan></CongNhan:DSCongNhan>
+    <CongNhan:Nhap></CongNhan:Nhap>
+    <CongNhan:ThanhToan></CongNhan:ThanhToan>
+    <!--<QuanLy:DSQuanLy></QuanLy:DSQuanLy>-->
+    <QuanLy:ThongTinTK></QuanLy:ThongTinTK>
+</TabbedPage>

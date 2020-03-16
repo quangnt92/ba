@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BA.QLCN.Views.QuanLy.DSQuanLy"
+             Title="Danh sách quản lý">
+    <ContentPage.Content>
+        <StackLayout Margin="20,20,20,20">
+            <Entry x:Name="userEntry"
+                   Text="{Binding Path=QuanLy.UserName}"
+                   FontSize="14"
+                   Placeholder="Tên đăng nhập"/>
+            <Entry x:Name="passEntry"
+                   Text="{Binding Path=QuanLy.Password}"
+                   IsPassword="True"
+                   FontSize="14"
+                   Placeholder="Mật khẩu"/>
+            <Button Text="Lưu"                
+                    Command="{Binding AddQuanLyCommand}"/>
+
+            <ListView x:Name="listView"
+                      ItemsSource="{Binding QuanLys}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding UserName}"
+                              Detail="{Binding Password}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

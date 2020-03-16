@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="BA.QLCN.Views.CongNhan.FormCongNhan">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="/Image/icon_save"
+                     Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout Padding="10,10,10,10">
+            <Entry x:Name="nameEntry"
+                   FontSize="14"                   
+                   Placeholder="Họ và tên"
+                   Text="{Binding Path=CongNhan.Name}"/>
+
+            <Entry x:Name="addressEntry"
+                   FontSize="14"
+                   Placeholder="Địa chỉ"
+                   Text="{Binding Path=CongNhan.Address}"/>
+
+            <Entry x:Name="phoneEntry"
+                   FontSize="14"
+                   Placeholder="Số điện thoại"
+                   Keyboard="Numeric"
+                   Text="{Binding Path=CongNhan.Phone}"/>
+
+            <Entry x:Name="hobbitEntry"
+                   FontSize="14"
+                   Placeholder="Sở thích"
+                   Text="{Binding Path=CongNhan.Hobbit}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="4*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="4*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <DatePicker x:Name="birth" 
+                            Format="D"
+                            Date="{Binding Path=CongNhan.Birth}"                            
+                            FontSize="14"
+                            VerticalOptions="CenterAndExpand"                            
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"/>
+                <Picker x:Name="gender" 
+                        SelectedItem="{Binding Path=CongNhan.Gender}"
+                        Title="Giới tính"
+                        FontSize="14"
+                        Grid.Row="0"
+                        Grid.Column="2">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Nam</x:String>
+                            <x:String>Nữ</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Grid>
+
+            <Grid HorizontalOptions="EndAndExpand"
+                  VerticalOptions="EndAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Lưu"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        TextColor="White"                        
+                        BorderWidth="0"
+                        BackgroundColor="#00adef"
+                        Command="{Binding SaveCommand}"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

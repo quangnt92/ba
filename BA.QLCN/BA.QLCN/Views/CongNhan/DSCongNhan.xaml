@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             mc:Ignorable="d"
+             x:Class="BA.QLCN.Views.CongNhan.DSCongNhan"
+             IconImageSource="/Image/icon_export.png"
+             BackgroundColor="White"       
+             x:Name="ContactView"
+             Title="Xuất">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="/Image/icon_refresh"
+                     Clicked="btnRefresh_Clicked"
+                     Command="{Binding SearchDataCommand}"/>
+        <ToolbarItem IconImageSource="/Image/icon_add"
+                     Command="{Binding AddCongNhanCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid VerticalOptions="StartAndExpand"
+                  HorizontalOptions="Start">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Text="Tìm kiếm theo:"
+                       FontSize="14"
+                       Grid.Row="0"
+                       VerticalOptions="CenterAndExpand"
+                       Grid.Column="1"/>           
+                <SearchBar x:Name="keyword"                                     
+                           SearchCommand="{Binding SearchDataCommand}"                           
+                           SearchCommandParameter="{ Binding Text, Source={x:Reference keyword}}"
+                           Placeholder="Tìm theo tên..."
+                           FontSize="14"
+                           Grid.Row="0"
+                           Grid.Column="2"/>
+            </Grid>
+
+            <syncfusion:SfListView x:Name="listView" 
+                                   ItemsSource="{Binding CongNhans}"
+                                   Padding="5,5,5,5"
+                                   ItemSize="100"                                                                     
+                                   AllowSwiping="True">
+                <syncfusion:SfListView.RightSwipeTemplate>
+                    <DataTemplate x:Name="LeftSwipeTemplate">
+                        <Grid>
+                            <Grid BackgroundColor="#fff" HorizontalOptions="Fill" VerticalOptions="Fill" Grid.Column="0">
+                                <Grid VerticalOptions="Center" HorizontalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <ImageButton Grid.Column="0"                                                    
+                                                 Grid.Row="0"
+                                                 Command="{Binding Path=BindingContext.SelectCongNhanCommand, Source={x:Reference ContactView}}"
+                                                 CommandParameter="{Binding .}"
+                                                 BackgroundColor="Transparent"
+                                                 HeightRequest="35"
+                                                 WidthRequest="35" 
+                                                 Source="/Image/icon_edit.png"/>
+                                    <ImageButton Grid.Column="1"                                                    
+                                                 Grid.Row="0"
+                                                 Command="{Binding Path=BindingContext.DeleteCongNhanCommand, Source={x:Reference ContactView}}"
+                                                 CommandParameter="{Binding .}"
+                                                 BackgroundColor="Transparent"
+                                                 HeightRequest="35"
+                                                 WidthRequest="35" 
+                                                 Source="/Image/icon_delete.png"/>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+                </syncfusion:SfListView.RightSwipeTemplate>
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.View>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="7*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="1"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="{Binding Name}"
+                                           Grid.Column="0"
+                                           Grid.ColumnSpan="2"
+                                           Grid.Row="0"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"
+                                           FontAttributes="Bold"
+                                           FontSize="14"/>
+                                    <Label Text="{Binding Address}"
+                                           Grid.Column="0"
+                                           Grid.ColumnSpan="2"
+                                           Grid.Row="1"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"                                   
+                                           FontSize="14"/>
+                                    <Label Text="{Binding Phone}"
+                                           Grid.Column="0"
+                                           Grid.ColumnSpan="2"
+                                           Grid.Row="2"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"                                   
+                                           FontSize="14"/>
+
+                                    <Label Text="{Binding Gender}"
+                                           Grid.Column="0"
+                                           Grid.Row="3"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"                                   
+                                           FontSize="14"/>
+
+                                    <Label Text="{Binding Birth}"
+                                           Grid.Column="1"
+                                           Grid.Row="3"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="CenterAndExpand"                                   
+                                           FontSize="14"/>
+                                </Grid>
+                            </ViewCell.View>
+                        </ViewCell>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
